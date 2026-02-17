@@ -281,7 +281,7 @@ h1 {
     display: grid;
 
     /* ✅ 가운데 이미지 영역을 "최대 420px"로 고정해서 항상 중앙에 오게 */
-    grid-template-columns: 36px minmax(420px, 420px) 36px;
+    grid-template-columns: 36px minmax(0, 1fr) 36px;
 
     gap: 12px;
     justify-content: center;   /* ✅ 그리드 전체를 가운데로 */
@@ -291,13 +291,11 @@ h1 {
 
   .carousel-img{
     width: 100% !important;
-    max-width: 100% !important;
+    max-width: 420px !important;
     height: auto !important;
+
     display: block;
     margin: 0 auto;
-
-    /* ✅ 세로도 화면 안에 들어오게(잘림 방지) */
-    max-height: 55vh;
     object-fit: contain;
   }
 
