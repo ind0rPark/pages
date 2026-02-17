@@ -261,6 +261,42 @@ h1 {
   .card-title {
     font-size: 32px;
   }
+  /* 일러스트 섹션: 모바일에서 폭 넓게 + 가운데 정렬 */
+  .illust-section{
+    width: 100%;
+    margin: 30px auto 90px auto;
+    text-align: center;
+  }
+
+  .illust-zip{
+    text-align: left;         /* 제목은 왼쪽이 좋으면 유지 */
+    margin: 0 0 14px 0;
+    padding: 0 4px;           /* 살짝 여백 */
+  }
+
+  /* 캐러셀: 화살표 칸을 줄이고 가운데 칸이 확실히 0까지 줄어들 수 있게 */
+  .carousel{
+    width: 100%;
+    grid-template-columns: 44px minmax(0, 1fr) 44px; /* ✅ 핵심 */
+    gap: 12px;
+    justify-items: center;
+  }
+
+  /* 이미지: 가운데 칸 폭을 절대 넘지 않게 */
+  .carousel-img{
+    width: 100%;              /* ✅ 가운데 칸(1fr) 안에서만 100% */
+    max-width: 420px;         /* ✅ 너무 커지지 않게(원하면 360~520 조절) */
+    height: auto;
+    display: block;
+  }
+
+  /* 화살표: 모바일용으로 조금 작게 */
+  .arrow{
+    width: 44px;
+    height: 44px;
+    font-size: 44px;
+    line-height: 1;
+  }
 }
 
 /* ===== gallery 상단 탭 ===== */
