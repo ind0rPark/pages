@@ -1,0 +1,485 @@
+/* 전역 박스 모델 통일 */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* 가로 잘림/흔들림 방지 */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+
+@font-face {
+  font-family: "DaeguBukseongro";
+  src: url("./fonts/DaeguBukseongro-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  font-family: "DaeguBukseongro", sans-serif;
+  background-color: #ffffff;
+ 
+}
+
+.hero {
+  height: 100vh;               /* 화면 전체 높이 */
+  display: flex;
+  flex-direction: column;      /* 세로 정렬 */
+  justify-content: center;     /* 세로 가운데 */
+  align-items: center;         /* 가로 가운데 */
+  text-align: center;
+}
+
+.hero-image {
+  width: 280px;
+  margin-bottom: 0%;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.hero-button {
+  padding: 18px 60px;
+  font-size: 32px;
+  border: none;
+  border-radius: 50px;
+  color: white;
+  background: linear-gradient(90deg, #6a5cff, #5f5af0);
+  cursor: pointer;
+  font-family: "DaeguBukseongro", sans-serif;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-self: center;
+  justify-items: center;
+  text-decoration: none;
+
+}
+
+/* ===== Home Page ===== */
+
+.topnav {
+  /* layout */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* size */
+  height:auto;
+  min-height: 72px;                 /* height 고정 대신 */
+  padding: env(safe-area-inset-top) 40px 0 40px;  /* 상단 safe-area */
+  padding-top: env(safe-area-inset-top);
+  padding-left: max(18px, env(safe-area-inset-left));
+  padding-right: max(18px, env(safe-area-inset-right));
+
+  /* style */
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+
+  /* sticky */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.brand {
+  display: inline-block;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  height: 28px;
+  width: auto;
+}
+
+.brand-text {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.menu-link {
+  font-size: 18px;
+  text-decoration: none;
+  color: #111;
+  padding: 8px 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.menu-link.is-active {
+  font-weight: 800;
+}
+
+.menu-link.is-active::after{
+  content:"";
+  position: absolute;
+  left:10px;
+  right:10px;
+  bottom:-19px;
+  height: 3px;
+  background: #6a5cff;
+  border-radius:999px;
+}
+
+.menu-link:hover {
+  font-weight: 800;
+}
+
+.home {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+
+  flex-wrap:wrap; /*좁으면 아래로 떨어지게*/
+  max-width:100%; /*가로 넘침 방지*/
+  
+}
+
+.card-img {
+  width: 240px;
+  max-width:100%
+  height: auto;
+}
+
+.card-body {
+  flex:1;
+  min-width:0;
+}
+
+.card-title {
+  font-size: 40px;
+  margin: 0 0 22px 0;
+}
+
+.card-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 54px;
+  padding: 0 26px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: #6a5cff;
+  color: #fff;
+  border: 1px solid #6a5cff;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #6a5cff;
+  border: 1px solid #6a5cff;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 720px) {
+  .topnav {
+    /* PC는 그대로, 모바일만 좁게 */
+    padding-left: max(10px, env(safe-area-inset-left));
+    padding-right: max(10px, env(safe-area-inset-right));
+    padding-top: env(safe-area-inset-top);
+
+    /* 높이 고정 때문에 잘리는 느낌 방지 */
+    height: auto;
+    min-height: 72px;
+    /* 메뉴가 길면 줄바꿈/스크롤 대응 가능하게 */
+    gap: 8px;
+
+
+  }
+   .brand-logo {
+    height: 22px;
+    width: 120px;
+  }
+
+  .menu{
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content:flex-end;
+    align-items:center;
+
+    gap:clamp(6px,2vw,12px);
+    flex:1;
+    min-width:0;
+  }
+  .menu-link {
+    white-space: nowrap;
+    font-size: clamp(12px, 3.4vw, 15px);
+    padding: clamp(4px, 1.2vw, 7px) clamp(6px, 1.6vw, 9px);
+  }
+
+  /* 모바일에선 밑줄 장식이 공간/위치 문제 만들면 약하게 */
+  .menu-link.is-active::after {
+    left: 6px;
+    right: 6px;
+    bottom: -10px;
+  } 
+
+  .home {
+    padding: 40px 16px;
+    gap: 50px;
+  }
+  .card {
+    flex-direction: column;
+    gap: 18px;
+    text-align: center;
+  }
+  .card-body {
+    min-width: 0;
+  }
+  .card-title {
+    font-size: 32px;
+  }
+}
+
+/* ===== gallery 상단 탭 ===== */
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding: 0 20px;
+}
+
+.gallery-head {
+  padding-top: 40px;   /* 두 페이지 동일 */
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.gallery-title {
+  font-size: 36px;
+}
+
+.tab {
+  font-family: "DaeguBukseongro", sans-serif;
+  font-weight: 300;   /* Light 느낌 */
+  opacity: 0.4;
+}
+
+.tab.is-active {
+  font-weight: 800;   /* ExtraBold 느낌 */
+  opacity: 1;
+}
+
+.tab-divider {
+  margin: 0 20px;
+  opacity: 0.3;
+}
+
+/* ===== 시리즈 영역 ===== */
+
+/*탭 블록 아래 컨텐츠 시작 간격*/
+.series-section {
+  width: 80%;
+  margin: 50px auto 150px auto;
+  scroll-margin-top: 120px; /* 상단 nav 가림 방지 */
+  text-align: left;
+}
+
+/*제목(ExtraBold)*/
+.series-title {
+  font-size: 24px;
+  margin: 0 0 10px 0;
+  font-family: "DaeguBukseongro", sans-serif;
+  font-weight: 800;
+}
+
+/* 부제목(Light) */
+.series-subtitle{
+  font-family: "DaeguBukseongro", sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  margin: 0 0 30px 0;
+  opacity: 0.85;
+}
+
+.series-section img {
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* ===== illustration page ===== */
+
+.page{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px 140px;
+}
+
+.gallery-tabs{
+  text-align: center;
+  margin: 40px 0 20px;
+  font-size: 32px;
+}
+
+.tab{
+  text-decoration: none;
+  color: #111;
+  font-weight: 300;
+  opacity: 0.55;
+}
+
+.tab.is-active{
+  font-weight: 800;
+  opacity: 1;
+}
+
+.tab-divider{
+  margin: 0 18px;
+  opacity: 0.3;
+}
+
+.illust-section{
+  margin-top: 70px;
+  width: 80%;
+  margin: 50px auto 150px auto;
+  scroll-margin-top: 120px; /* 상단 nav 가림 방지 */
+  text-align: left;
+}
+
+.illust-zip{
+  font-size: 24px;
+  font-weight: 800;
+  opacity: 0.85;
+  margin: 0 0 18px 0;
+}
+
+.carousel{
+  display: grid;
+  grid-template-columns: 80px 1fr 80px;
+  align-items: center;
+  gap: 30px;
+  justify-items: center;
+}
+
+.carousel-img{
+  width: min(520px, 90vw);
+  height: auto;
+  display: block;
+}
+
+.arrow{
+  width: 64px;
+  height: 64px;
+  border: none;
+  background: transparent;
+  font-size: 70px;
+  line-height: 1;
+  color: #6a5cff;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ===== About page ===== */
+.about-head{
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+
+.about-title{
+  font-size: 34px;
+  font-weight: 800;
+  text-align: center;
+  margin: 0;
+}
+
+.about-subtitle{
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 300;
+  opacity: 0.85;
+}
+
+.evolve-wrapper{
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.evolve-img{
+  width: 700px;      /* 크기 조절 가능 */
+  max-width: 90%;
+  height: auto;
+  display: block;
+}
+
+.about-desc{
+  margin-top: 32px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+.about-block{
+  padding-top: 90px;
+  padding-bottom: 80px;
+}
+
+.center-figure{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.minchi-img{
+  width: 260px;
+  max-width: 60vw;
+  height: auto;
+  display: block;
+}
+
+/* ===== Contact page ===== */
+.contact-page{
+  height: calc(100vh - 72px); /* nav 높이 72px 기준 */
+  display: flex;
+  align-items: center;
+}
+
+.contact-card{
+  text-align: center;
+  font-size: 24px;       /* 시안처럼 큼직하게 */
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.contact-card a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.contact-card a:hover{
+  text-decoration: underline;
+}
