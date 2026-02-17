@@ -1,10 +1,3 @@
-/* 전역 박스 모델 통일 */
-*, *::before, *::after { box-sizing: border-box; }
-
-/* 가로 잘림/흔들림 방지 */
-html, body { max-width: 100%; }
-
-
 @font-face {
   font-family: "DaeguBukseongro";
   src: url("./fonts/DaeguBukseongro-ExtraBold.ttf") format("truetype");
@@ -21,7 +14,6 @@ body {
   margin: 0;
   font-family: "DaeguBukseongro", sans-serif;
   background-color: #ffffff;
- 
 }
 
 .hero {
@@ -57,30 +49,19 @@ h1 {
   align-self: center;
   justify-items: center;
   text-decoration: none;
-
 }
 
 /* ===== Home Page ===== */
 
 .topnav {
-  /* layout */
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  /* size */
-  height:auto;
-  min-height: 72px;                 /* height 고정 대신 */
-  padding: env(safe-area-inset-top) 40px 0 40px;  /* 상단 safe-area */
-  padding-top: env(safe-area-inset-top);
-  padding-left: max(18px, env(safe-area-inset-left));
-  padding-right: max(18px, env(safe-area-inset-right));
-
-  /* style */
+  padding: 0 40px;
   background: #ffffff;
-  border-bottom: 1px solid #eee;
+  border-bottom:1px solid #eee;
 
-  /* sticky */
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -151,20 +132,17 @@ h1 {
   justify-content: center;
   gap: 60px;
 
-  flex-wrap:wrap; /*좁으면 아래로 떨어지게*/
-  max-width:100%; /*가로 넘침 방지*/
-  
+  margin:0 auto;
 }
 
 .card-img {
   width: 240px;
-  max-width:100%;
   height: auto;
 }
 
 .card-body {
-  flex:1;
-  min-width:0;
+  min-width: 360px;
+  text-align : left;
 }
 
 .card-title {
@@ -202,112 +180,6 @@ h1 {
   border: 1px solid #6a5cff;
 }
 
-/* 모바일 반응형 */
-@media (max-width: 720px) {
-  .topnav {
-    /* PC는 그대로, 모바일만 좁게 */
-    padding-left: max(10px, env(safe-area-inset-left));
-    padding-right: max(10px, env(safe-area-inset-right));
-    padding-top: env(safe-area-inset-top);
-
-    /* 높이 고정 때문에 잘리는 느낌 방지 */
-    height: auto;
-    min-height: 72px;
-    /* 메뉴가 길면 줄바꿈/스크롤 대응 가능하게 */
-    gap: 8px;
-
-
-  }
-   .brand-logo {
-    height: 22px;
-    width: 120px;
-  }
-
-  .menu{
-    display:flex;
-    flex-wrap:nowrap;
-    justify-content:flex-end;
-    align-items:center;
-
-    gap:clamp(6px,2vw,12px);
-    flex:1;
-    min-width:0;
-  }
-  .menu-link {
-    white-space: nowrap;
-    font-size: clamp(12px, 3.4vw, 15px);
-    padding: clamp(4px, 1.2vw, 7px) clamp(6px, 1.6vw, 9px);
-  }
-
-  /* 모바일에선 밑줄 장식이 공간/위치 문제 만들면 약하게 */
-  .menu-link.is-active::after {
-    left: 6px;
-    right: 6px;
-    bottom: -10px;
-  } 
-
-  .home {
-    padding: 40px 16px;
-    gap: 50px;
-  }
-  .card {
-    flex-direction: column;
-    gap: 18px;
-    text-align: center;
-  }
-  .card-body {
-    min-width: 0;
-  }
-  .card-title {
-    font-size: 32px;
-  }
-/* ===== 모바일: illustration 캐러셀 고정 세트 ===== */
-@media (max-width: 720px) {
-
-  .illust-section{
-    width: 100%;
-    margin: 24px auto 80px;   /* 위/아래 여백 약간 정리 */
-    text-align: center;
-  }
-
-  .illust-zip{
-    text-align: left;
-    margin: 0 0 14px 0;
-    padding: 0 4px;
-  }
-
-  .carousel{
-    width: 100%;
-    display: grid;
-
-    /* ✅ 가운데 이미지 영역을 "최대 420px"로 고정해서 항상 중앙에 오게 */
-    grid-template-columns: 36px minmax(0, 1fr) 36px;
-
-    gap: 12px;
-    justify-content: center;   /* ✅ 그리드 전체를 가운데로 */
-    justify-items: center;
-    align-items: center;
-  }
-
-  .carousel-img{
-    width: 100% !important;
-    max-width: 420px !important;
-    height: auto !important;
-
-    display: block;
-    margin: 0 auto;
-    object-fit: contain;
-  }
-
-  .arrow{
-    width: 44px;
-    height: 44px;
-    font-size: 44px;
-    line-height: 1;
-  }
-}
-
-
 /* ===== gallery 상단 탭 ===== */
 .container{
   max-width:1100px;
@@ -316,7 +188,7 @@ h1 {
 }
 
 .gallery-head {
-  padding-top: 40px;   /* 두 페이지 동일 */
+  padding-top: 40px;
   padding-bottom: 30px;
   text-align: center;
 }
@@ -327,12 +199,12 @@ h1 {
 
 .tab {
   font-family: "DaeguBukseongro", sans-serif;
-  font-weight: 300;   /* Light 느낌 */
+  font-weight: 300;
   opacity: 0.4;
 }
 
 .tab.is-active {
-  font-weight: 800;   /* ExtraBold 느낌 */
+  font-weight: 800;
   opacity: 1;
 }
 
@@ -342,16 +214,13 @@ h1 {
 }
 
 /* ===== 시리즈 영역 ===== */
-
-/*탭 블록 아래 컨텐츠 시작 간격*/
 .series-section {
   width: 80%;
   margin: 50px auto 150px auto;
-  scroll-margin-top: 120px; /* 상단 nav 가림 방지 */
+  scroll-margin-top: 120px;
   text-align: left;
 }
 
-/*제목(ExtraBold)*/
 .series-title {
   font-size: 24px;
   margin: 0 0 10px 0;
@@ -359,7 +228,6 @@ h1 {
   font-weight: 800;
 }
 
-/* 부제목(Light) */
 .series-subtitle{
   font-family: "DaeguBukseongro", sans-serif;
   font-weight: 300;
@@ -374,7 +242,6 @@ h1 {
 }
 
 /* ===== illustration page ===== */
-
 .page{
   max-width: 1100px;
   margin: 0 auto;
@@ -408,7 +275,7 @@ h1 {
   margin-top: 70px;
   width: 80%;
   margin: 50px auto 150px auto;
-  scroll-margin-top: 120px; /* 상단 nav 가림 방지 */
+  scroll-margin-top: 120px;
   text-align: left;
 }
 
@@ -473,7 +340,7 @@ h1 {
 }
 
 .evolve-img{
-  width: 700px;      /* 크기 조절 가능 */
+  width: 700px;
   max-width: 90%;
   height: auto;
   display: block;
@@ -508,14 +375,14 @@ h1 {
 
 /* ===== Contact page ===== */
 .contact-page{
-  height: calc(100vh - 72px); /* nav 높이 72px 기준 */
+  height: calc(100vh - 72px);
   display: flex;
   align-items: center;
 }
 
 .contact-card{
   text-align: center;
-  font-size: 24px;       /* 시안처럼 큼직하게 */
+  font-size: 24px;
   font-weight: 300;
   line-height: 1.6;
 }
@@ -527,4 +394,87 @@ h1 {
 
 .contact-card a:hover{
   text-decoration: underline;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 720px) {
+  .topnav {
+    padding-left: max(18px, env(safe-area-inset-left));
+    padding-right: max(18px, env(safe-area-inset-right));
+    padding-top: env(safe-area-inset-top);
+    height: auto;
+    min-height: 72px;
+  }
+
+  .menu {
+    gap: 14px;
+  }
+
+  .home {
+    padding: 40px 16px;
+    gap: 50px;
+  }
+
+  .card {
+    flex-direction: column;
+    gap: 18px;
+    text-align: center;
+  }
+
+  .card-body {
+    min-width: auto;
+  }
+
+  .card-title {
+    font-size: 32px;
+  }
+
+  /* ===== 모바일: illustration 캐러셀만 "안 잘리고 크게 + 중앙" =====
+     PC는 건드리지 않음 (media 안에서만 적용) */
+  .illust-section{
+    width: 100%;
+    margin: 30px auto 90px auto;
+    padding: 0 16px;
+    text-align: center;
+  }
+
+  .illust-zip{
+    text-align: left;
+    margin: 0 0 14px 0;
+  }
+
+  /* grid 말고 "화살표 오버레이"로 바꿔서 이미지가 폰폭 거의 꽉 차게 */
+  .carousel{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .carousel-img{
+    width: min(90vw, 520px);   /* ✅ 폰 화면 기준 크게 */
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .arrow{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    font-size: 44px;
+    line-height: 1;
+    color: #6a5cff;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .arrow.left { left: 6px; }
+  .arrow.right { right: 6px; }
 }
