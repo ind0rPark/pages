@@ -261,43 +261,46 @@ h1 {
   .card-title {
     font-size: 32px;
   }
-  /* 일러스트 섹션: 모바일에서 폭 넓게 + 가운데 정렬 */
+/* ===== 모바일: illustration 캐러셀 고정 세트 ===== */
+@media (max-width: 720px) {
+
   .illust-section{
     width: 100%;
-    margin: 30px auto 90px auto;
+    margin: 24px auto 80px;   /* 위/아래 여백 약간 정리 */
     text-align: center;
   }
 
   .illust-zip{
-    text-align: left;         /* 제목은 왼쪽이 좋으면 유지 */
+    text-align: left;
     margin: 0 0 14px 0;
-    padding: 0 4px;           /* 살짝 여백 */
+    padding: 0 4px;
   }
 
-  /* 캐러셀: 화살표 칸을 줄이고 가운데 칸이 확실히 0까지 줄어들 수 있게 */
   .carousel{
     width: 100%;
     display: grid;
-    grid-template-columns: 44px minmax(0, 1fr) 44px; /* ✅ 핵심 */
+
+    /* ✅ 가운데 이미지 영역을 "최대 420px"로 고정해서 항상 중앙에 오게 */
+    grid-template-columns: 44px minmax(0, 420px) 44px;
+
     gap: 12px;
+    justify-content: center;   /* ✅ 그리드 전체를 가운데로 */
     justify-items: center;
-    align-items:center;
+    align-items: center;
   }
 
-  /* 이미지: 가운데 칸 폭을 절대 넘지 않게 */
   .carousel-img{
-    width: 100% !important;              /* ✅ 가운데 칸(1fr) 안에서만 100% */
-    max-width: 100% !important;         /* ✅ 너무 커지지 않게(원하면 360~520 조절) */
+    width: 100% !important;
+    max-width: 100% !important;
     height: auto !important;
-    display:block;
-    margin:0 auto;
+    display: block;
+    margin: 0 auto;
+
+    /* ✅ 세로도 화면 안에 들어오게(잘림 방지) */
+    max-height: 55vh;
+    object-fit: contain;
   }
 
-  .illust-section,.page,.container{
-    max-width:100%;
-  }
-
-  /* 화살표: 모바일용으로 조금 작게 */
   .arrow{
     width: 44px;
     height: 44px;
@@ -305,6 +308,7 @@ h1 {
     line-height: 1;
   }
 }
+
 
 /* ===== gallery 상단 탭 ===== */
 .container{
