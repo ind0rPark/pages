@@ -277,17 +277,24 @@ h1 {
   /* 캐러셀: 화살표 칸을 줄이고 가운데 칸이 확실히 0까지 줄어들 수 있게 */
   .carousel{
     width: 100%;
+    display: grid;
     grid-template-columns: 44px minmax(0, 1fr) 44px; /* ✅ 핵심 */
     gap: 12px;
     justify-items: center;
+    align-items:center;
   }
 
   /* 이미지: 가운데 칸 폭을 절대 넘지 않게 */
   .carousel-img{
-    width: 100%;              /* ✅ 가운데 칸(1fr) 안에서만 100% */
-    max-width: 420px;         /* ✅ 너무 커지지 않게(원하면 360~520 조절) */
-    height: auto;
-    display: block;
+    width: 100% !important;              /* ✅ 가운데 칸(1fr) 안에서만 100% */
+    max-width: 100% !important;         /* ✅ 너무 커지지 않게(원하면 360~520 조절) */
+    height: auto !important;
+    display:block;
+    margin:0 auto;
+  }
+
+  .illust-section,.page,.container{
+    max-width:100%;
   }
 
   /* 화살표: 모바일용으로 조금 작게 */
